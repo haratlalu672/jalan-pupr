@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Administrator;
+use App\Models\Jalan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AdministratorFactory extends Factory
+class JalanFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Administrator::class;
+    protected $model = Jalan::class;
 
     /**
      * Define the model's default state.

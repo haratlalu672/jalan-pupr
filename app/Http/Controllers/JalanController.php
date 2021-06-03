@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Administrator;
+use App\Http\Requests\JalanRequest;
+use App\Models\Jalan;
 use Illuminate\Http\Request;
+use Str;
 
-class AdministratorController extends Controller
+class JalanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,8 @@ class AdministratorController extends Controller
      */
     public function index()
     {
-        //
+        $jalan = Jalan::query()->get();
+        return view('pegawai.admin.data', compact('jalan'));
     }
 
     /**
@@ -24,7 +27,7 @@ class AdministratorController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.admin.create');
     }
 
     /**
@@ -33,18 +36,24 @@ class AdministratorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JalanRequest $request)
     {
-        //
+        $image = $request->gambar ? $request->file('gambar')->store('images/data') : 'default.jpg';
+        Jalan::create($request->validated() + [
+            'slug' => Str::slug($request->judul),
+            'gambar' => $image
+        ]);
+
+        return redirect()->route('data.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Administrator  $administrator
+     * @param  \App\Models\Jalan  $jalan
      * @return \Illuminate\Http\Response
      */
-    public function show(Administrator $administrator)
+    public function show(Jalan $jalan)
     {
         //
     }
@@ -52,10 +61,10 @@ class AdministratorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Administrator  $administrator
+     * @param  \App\Models\Jalan  $jalan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Administrator $administrator)
+    public function edit(Jalan $jalan)
     {
         //
     }
@@ -64,10 +73,10 @@ class AdministratorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Administrator  $administrator
+     * @param  \App\Models\Jalan  $jalan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Administrator $administrator)
+    public function update(Request $request, Jalan $jalan)
     {
         //
     }
@@ -75,11 +84,14 @@ class AdministratorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Administrator  $administrator
+     * @param  \App\Models\Jalan  $jalan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Administrator $administrator)
+    public function destroy($id)
     {
-        //
+        Jalan::find($id)->delete();
+
+        // notify()->success("Data Berhasil Dihapus", "Success", "topRight");
+        return redirect()->route('data.index');
     }
 }
