@@ -118,3 +118,7 @@
 </div>
 <!-- /.content-wrapper -->
 @endsection
+@push('script')
+<x-map />
+@include('components.jalan')
+@endpush

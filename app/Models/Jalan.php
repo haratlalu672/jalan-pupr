@@ -18,4 +18,14 @@ class Jalan extends Model
     {
         return 'slug';
     }
+
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::creating(function ($model) {
+    //         dd($model->id);
+    //         $model->kode_laporan = 'JL-' . str_pad('1', 5, '0', STR_PAD_LEFT);
+    //     });
+    // }
 }

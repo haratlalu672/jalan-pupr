@@ -38,12 +38,13 @@ class JalanController extends Controller
      */
     public function store(JalanRequest $request)
     {
-        $image = $request->gambar ? $request->file('gambar')->store('images/data') : 'default.jpg';
-        Jalan::create($request->validated() + [
+        $image = $request->gambar ? $request->file('gambar')->store('', 'public') : 'noimage.png';
+        $jalan = Jalan::create($request->validated() + [
             'slug' => Str::slug($request->judul),
             'gambar' => $image
         ]);
 
+        notify()->success("Data Berhasil Ditambah", "Success", "topRight");
         return redirect()->route('data.index');
     }
 
@@ -64,9 +65,10 @@ class JalanController extends Controller
      * @param  \App\Models\Jalan  $jalan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jalan $jalan)
+    public function edit($slug)
     {
-        //
+        $jalan = Jalan::where('slug', $slug)->first();
+        return view('pegawai.admin.edit', compact('jalan'));
     }
 
     /**
@@ -76,9 +78,22 @@ class JalanController extends Controller
      * @param  \App\Models\Jalan  $jalan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jalan $jalan)
+    public function update(JalanRequest $request, $slug)
     {
-        //
+        $jalan = Jalan::where('slug', $slug)->first();
+        $image = $request->gambar ? $request->file('gambar')->store('', 'public') : $jalan->gambar;
+        if ($request->gambar) {
+            if ($jalan->gambar) {
+                \Storage::delete('storage/app/public/' . $jalan->gambar);
+            }
+        }
+
+        $jalan->update($request->validated() + [
+            'gambar' => $image
+        ]);
+
+        notify()->success("Data Berhasil Diedit", "Success", "topRight");
+        return redirect()->route('data.index');
     }
 
     /**
@@ -91,7 +106,7 @@ class JalanController extends Controller
     {
         Jalan::find($id)->delete();
 
-        // notify()->success("Data Berhasil Dihapus", "Success", "topRight");
+        notify()->success("Data Berhasil Dihapus", "Success", "topRight");
         return redirect()->route('data.index');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jalan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pegawai.admin.home');
+        $jalan = Jalan::query()->get();
+        return view('pegawai.admin.home', compact('jalan'));
     }
 }

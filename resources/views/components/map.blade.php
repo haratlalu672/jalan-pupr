@@ -11,5 +11,4 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     zoomOffset: -1
 }).addTo(mymap);
 
-
 </script>

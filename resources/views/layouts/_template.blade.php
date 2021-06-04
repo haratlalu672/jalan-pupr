@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('adminlte') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet"
         href="{{ asset('adminlte') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -77,6 +78,7 @@
     <script src="{{ asset('adminlte') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('adminlte') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="{{ asset('adminlte') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('js/iziToast.js') }}"></script>
 
     <!-- PAGE SCRIPTS -->
     <script src="{{ asset('adminlte') }}/dist/js/pages/dashboard2.js"></script>
@@ -84,8 +86,9 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
-        
-    <x-map />
+    @include('vendor.lara-izitoast.toast')
+
+    @stack('script')
 
     <x-datatable />
 

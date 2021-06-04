@@ -43,6 +43,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Kode Laporan</th>
                                             <th>Nama</th>
                                             <th>Alamat</th>
                                             <th>Gambar</th>
@@ -56,9 +57,13 @@
                                         @foreach ($jalan as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
+                                            <td>{{ 'JL-' . str_pad($data->id, 6, '0', STR_PAD_LEFT) }}</td>
                                             <td>{{ $data->judul }}</td>
                                             <td>{{ $data->lokasi }}</td>
-                                            <td>{{ $data->gambar }}</td>
+                                            <td>
+                                                <img style="width: 80px; height: 100px;"
+                                                    src="{{ asset("storage/" . $data->gambar) }}">
+                                            </td>
                                             <td>
                                                 <a href="{{ route('data.show', $data->slug) }}"
                                                     class="btn btn-info">Detail</a>
