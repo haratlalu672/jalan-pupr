@@ -11,10 +11,10 @@
     <span class="text-danger">{{ $errors->first('lokasi') }}</span>
 </div>
 <div class="form-group">
-    <label for="diameter">Diameter</label>
-    <input type="number" class="form-control" id="diameter" name="diameter" placeholder="Diameter dalam cm"
-        value="{{ old('diameter') ?? $jalan->diameter }}">
-    <span class="text-danger">{{ $errors->first('diameter') }}</span>
+    <label for="panjang">Panjang</label>
+    <input type="number" class="form-control" id="panjang" name="panjang" placeholder="Panjang dalam Meter"
+        value="{{ old('panjang') ?? $jalan->panjang }}">
+    <span class="text-danger">{{ $errors->first('panjang') }}</span>
 </div>
 <div class="form-group">
     <label for="kedalaman">Kedalaman</label>

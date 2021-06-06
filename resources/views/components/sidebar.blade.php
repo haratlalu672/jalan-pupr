@@ -53,6 +53,7 @@
                     </p>
                 </a>
             </li>
+            @if (auth()->user()->role_id == 4)
             <li class="nav-item">
                 <a href="{{ route('data.index') }}" class="nav-link {{ request()->is('data*') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-th"></i>
@@ -61,6 +62,18 @@
                     </p>
                 </a>
             </li>
+            @endif
+            @if (auth()->user()->role_id == 2)
+            <li class="nav-item">
+                <a href="{{ route('pengelolaan.index') }}"
+                    class="nav-link {{ request()->is('pengelolaan*') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Pengelolaan Jalan
+                    </p>
+                </a>
+            </li>
+            @endif
             <li class="nav-item">
                 <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">

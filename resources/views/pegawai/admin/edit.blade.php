@@ -57,6 +57,7 @@
 
             </div>
             <!--/. container-fluid -->
+        </div>
     </section>
     <!-- /.content -->
 </div>

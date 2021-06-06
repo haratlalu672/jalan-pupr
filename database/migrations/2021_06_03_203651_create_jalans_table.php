@@ -18,9 +18,11 @@ class CreateJalansTable extends Migration
             $table->string('judul');
             $table->string('slug');
             $table->text('lokasi');
-            $table->string('diameter');
+            $table->string('panjang');
             $table->string('kedalaman');
             $table->string('gambar');
+            $table->string('status')->comment('1 = baru, 2 = ringan, 3 = berat');
+            $table->string('selesai')->nullable();
             $table->string('latitude');
             $table->string('longitude');
             $table->timestamps();

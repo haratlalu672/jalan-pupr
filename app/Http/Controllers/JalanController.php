@@ -27,7 +27,9 @@ class JalanController extends Controller
      */
     public function create()
     {
-        return view('pegawai.admin.create');
+        return view('pegawai.admin.create', [
+            'jalan' => new Jalan
+        ]);
     }
 
     /**
@@ -41,7 +43,8 @@ class JalanController extends Controller
         $image = $request->gambar ? $request->file('gambar')->store('', 'public') : 'noimage.png';
         $jalan = Jalan::create($request->validated() + [
             'slug' => Str::slug($request->judul),
-            'gambar' => $image
+            'gambar' => $image,
+            'status' => '1'
         ]);
 
         notify()->success("Data Berhasil Ditambah", "Success", "topRight");
@@ -54,9 +57,10 @@ class JalanController extends Controller
      * @param  \App\Models\Jalan  $jalan
      * @return \Illuminate\Http\Response
      */
-    public function show(Jalan $jalan)
+    public function show($slug)
     {
-        //
+        $jalan = Jalan::where('slug', $slug)->first();
+        return view('pegawai.admin.show', compact('jalan'));
     }
 
     /**

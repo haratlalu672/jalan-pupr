@@ -26,10 +26,12 @@ class JalanRequest extends FormRequest
         return [
             'judul' => 'required',
             'lokasi' => 'required',
-            'diameter' => 'required|numeric',
+            'panjang' => 'required|numeric',
             'kedalaman' => 'required|numeric',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+            'status' => 'nullable',
+            'selesai' => 'nullable',
         ];
     }
 }
