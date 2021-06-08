@@ -41,7 +41,7 @@ class JalanController extends Controller
     public function store(JalanRequest $request)
     {
         $image = $request->gambar ? $request->file('gambar')->store('', 'public') : 'noimage.png';
-        $jalan = Jalan::create($request->validated() + [
+        Jalan::create($request->validated() + [
             'slug' => Str::slug($request->judul),
             'gambar' => $image,
             'status' => '1'

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{JalanController, PrioritasController};
+use App\Http\Controllers\{JalanController, PrioritasController, UserController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +25,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('data', AdministratorController::class);
     Route::resource('data', JalanController::class);
     Route::resource('pengelolaan', PrioritasController::class);
+    Route::resource('user', UserController::class);
 });
