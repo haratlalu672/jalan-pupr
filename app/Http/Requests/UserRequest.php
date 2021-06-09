@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'username' => 'required|unique:users,username,' . optional($this->user)->id,
+            'username' => 'required|unique:users,username,' . $this->user()->id,
             'role' => 'required'
         ];
     }

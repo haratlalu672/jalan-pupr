@@ -45,6 +45,7 @@
                                             <th>No</th>
                                             <th>Kode Laporan</th>
                                             <th>Nama</th>
+                                            <th>Status</th>
                                             <th>Alamat</th>
                                             <th>Gambar</th>
                                             <th>Aksi</th>
@@ -59,6 +60,18 @@
                                             <td>{{ $no++ }}</td>
                                             <td>{{ 'JL-' . str_pad($data->id, 6, '0', STR_PAD_LEFT) }}</td>
                                             <td>{{ $data->judul }}</td>
+                                            <td>
+                                                @switch($data->status)
+                                                    @case(1)
+                                                        Belum Dianalisa
+                                                        @break
+                                                    @case(2)
+                                                        Berat
+                                                        @break
+                                                    @default
+                                                        Ringan
+                                                @endswitch
+                                            </td>
                                             <td>{{ $data->lokasi }}</td>
                                             <td>
                                                 <img style="width: 80px; height: 100px;"
@@ -68,16 +81,7 @@
                                                 <a href="{{ route('data.show', $data->slug) }}"
                                                     class="btn btn-info">Detail</a>
                                                 <a href="{{ route('data.edit', $data->slug) }}"
-                                                    class="btn btn-warning">Edit</a>
-                                                <form class="d-inline mr-5"
-                                                    action="{{ route('data.destroy', $data->id) }}" method="POST">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button type="submit" data-toggle="tooltip" class="btn btn-danger"
-                                                        onclick="return confirm('Yakin mau dihapus?')">
-                                                        Hapus
-                                                    </button>
-                                                </form>
+                                                    class="btn btn-warning">Perbaikan</a>
                                             </td>
                                         </tr>
                                         @endforeach

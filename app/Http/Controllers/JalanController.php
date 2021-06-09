@@ -91,13 +91,18 @@ class JalanController extends Controller
                 \Storage::delete('storage/app/public/' . $jalan->gambar);
             }
         }
-
+        if ($request->password != null) {
+            request()->validate([
+                'password' => 'min:6'
+            ]);
+        }
         $jalan->update($request->validated() + [
-            'gambar' => $image
+            'gambar' => $image,
+            'password' => bcrypt($request->password)
         ]);
 
         notify()->success("Data Berhasil Diedit", "Success", "topRight");
-        return redirect()->route('data.index');
+        return redirect()->route('home');
     }
 
     /**

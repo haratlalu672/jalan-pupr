@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{JalanController, PrioritasController, UserController};
+use App\Http\Controllers\{JalanController, PrioritasController, UserController, WelcomeController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', WelcomeController::class)->name('welcome');
 
 Auth::routes();
 
@@ -26,4 +24,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('data', JalanController::class);
     Route::resource('pengelolaan', PrioritasController::class);
     Route::resource('user', UserController::class);
+    Route::get('/user/{user:id}/reset-password', [App\Http\Controllers\UserController::class, 'editPassword'])->name('edit');
+    Route::patch('/user/{user:id}/reset', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('update');
 });

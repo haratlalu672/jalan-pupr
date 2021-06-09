@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrioritasTable extends Migration
+class CreatePrioritasUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreatePrioritasTable extends Migration
      */
     public function up()
     {
-        Schema::create('prioritas', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('jalan_id');
-            $table->string('status');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::create('prioritas_users', function (Blueprint $table) {
+            $table->foreignId('prioritas_id');
+            $table->foreignId('users_id');
+            $table->primary(['prioritas_id', 'users_id']);
         });
     }
 
@@ -29,6 +27,6 @@ class CreatePrioritasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prioritas');
+        Schema::dropIfExists('prioritas_users');
     }
 }
