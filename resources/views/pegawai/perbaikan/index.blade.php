@@ -30,7 +30,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Data Jalan</h4>
-                                <a href="{{ route('data.create') }}" class="btn btn-primary btn-round ml-auto">
+                                <a href="{{ route('perbaikan.create') }}" class="btn btn-primary btn-round ml-auto">
                                     <i class="fa fa-plus"></i>
                                     Tambah
                                 </a>
@@ -43,11 +43,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode Laporan</th>
-                                            <th>Nama</th>
-                                            <th>Status</th>
+                                            <th>Kode Perbaikan</th>
+                                            <th>Petugas</th>
                                             <th>Alamat</th>
-                                            <th>Gambar</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -55,33 +53,17 @@
                                         @php
                                         $no =1;
                                         @endphp
-                                        @foreach ($jalan as $data)
+                                        @foreach ($perbaikan as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ 'JL-' . str_pad($data->id, 6, '0', STR_PAD_LEFT) }}</td>
-                                            <td>{{ $data->judul }}</td>
+                                            <td>{{ 'PB-' . str_pad($data->id, 6, '0', STR_PAD_LEFT) }}</td>
+                                            <td>{{ $data->users()->get()->implode('name',', ') }}</td>
+                                            <td>{{ $data->jalan->lokasi }}</td>
                                             <td>
-                                                @switch($data->status)
-                                                    @case(1)
-                                                        Belum Dianalisa
-                                                        @break
-                                                    @case(2)
-                                                        Ringan
-                                                        @break
-                                                    @default
-                                                        Berat
-                                                @endswitch
-                                            </td>
-                                            <td>{{ $data->lokasi }}</td>
-                                            <td>
-                                                <img style="width: 80px; height: 100px;"
-                                                    src="{{ asset("storage/" . $data->gambar) }}">
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('data.show', $data->slug) }}"
+                                                {{-- <a href="{{ route('perbaikan.show', $data->id) }}"
                                                     class="btn btn-info">Detail</a>
-                                                <a href="{{ route('pengelolaan.edit', $data->slug) }}"
-                                                    class="btn btn-warning">Status</a>
+                                                <a href="{{ route('perbaikan.edit', $data->id) }}"
+                                                    class="btn btn-warning">Status</a> --}}
                                             </td>
                                         </tr>
                                         @endforeach

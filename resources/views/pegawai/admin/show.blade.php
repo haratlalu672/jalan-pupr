@@ -59,8 +59,7 @@
                                     </table>
                                 </div>
                                 <div class="col-md-4">
-                                    <iframe src="{{ asset("storage/". $jalan->gambar) }}" frameborder="0" width="660"
-                                        height="480" allowfullscreen></iframe>
+                                    <img src="{{ asset("storage/". $jalan->gambar) }}" style="width: 100%; height: 300px;">
                                 </div>
                                 <div class="col-md-4">
                                     <div id="mapid" style="width: 100%; height: 300px;"></div>

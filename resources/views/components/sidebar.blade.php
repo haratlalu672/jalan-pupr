@@ -42,19 +42,31 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item has-treeview menu-open">
+            <li class="nav-item">
+                <a href="{{ route('perbaikan.index') }}"
+                    class="nav-link {{ request()->is('perbaikan*') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Perbaikan Jalan
+                    </p>
+                </a>
+            </li>
+            {{-- <li class="nav-item has-treeview">
                 <a href="#" class="nav-link active">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
-                        Dashboard
+                        Pengelolaan Jalan
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Dashboard v1</p>
+                        <a href="{{ route('pengelolaan.index') }}"
+                            class="nav-link {{ request()->is('pengelolaan*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Data Jalan
+                            </p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -63,14 +75,9 @@
                             <p>Dashboard v2</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="./index3.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Dashboard v3</p>
-                        </a>
-                    </li>
+
                 </ul>
-            </li>
+            </li> --}}
             @endif
             @if (auth()->user()->role_id == 4)
             <li class="nav-item">

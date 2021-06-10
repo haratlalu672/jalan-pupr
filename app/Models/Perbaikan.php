@@ -9,10 +9,17 @@ class Perbaikan extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $table = 'perbaikan';
 
     public function jalan()
     {
-        return $this->hasMany(Jalan::class);
+        return $this->belongsTo(Jalan::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

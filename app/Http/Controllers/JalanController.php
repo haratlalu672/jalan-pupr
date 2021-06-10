@@ -102,7 +102,7 @@ class JalanController extends Controller
         ]);
 
         notify()->success("Data Berhasil Diedit", "Success", "topRight");
-        return redirect()->route('home');
+        return redirect()->route('data.index');
     }
 
     /**
