@@ -16,7 +16,7 @@ class JalanController extends Controller
      */
     public function index()
     {
-        $jalan = Jalan::query()->get();
+        $jalan = Jalan::where('selesai',0)->get();
         return view('pegawai.admin.data', compact('jalan'));
     }
 

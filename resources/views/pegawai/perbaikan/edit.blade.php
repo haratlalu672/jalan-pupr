@@ -36,35 +36,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="{{ route('pengelolaan.update', $jalan->slug) }}" method="POST">
+                                    <form action="{{ route('perbaikan.update', $perbaikan->id) }}" method="POST">
                                         @method('patch')
                                         @csrf
-                                        <div class="form-group">
-                                            <label for="status">Status</label>
-                                            <select type="text" name="status" id="status" class="form-control">
-                                                <option value="1">Pilih</option>
-                                                <option value="2" {{ $jalan->status == '2' ? 'selected' : '' }}>Ringan
-                                                </option>
-                                                <option value="3" {{ $jalan->status == '3' ? 'selected' : '' }}>Berat
-                                                </option>
-                                            </select>
-                                            @error('consoles')
-                                            <div class="mt-2 text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        {{-- <div class="form-group">
-                                            <label for="users">Petugas</label>
-                                            <select type="text" name="users[]" id="users" class="form-control select2"
-                                                multiple>
-                                                @foreach ($users as $data)
-                                                <option value="{{ $data->id }}">
-                                                    {{ $data->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('users')
-                                            <div class="mt-2 text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div> --}}
+                                        @include('pegawai.perbaikan._partial')
+                                        <br>
                                         <button type="submit" class="btn btn-primary ml-2">Save</button>
                                     </form>
                                 </div>
@@ -84,10 +60,10 @@
 <!-- /.content-wrapper -->
 @endsection
 
-{{-- @push('script')
+@push('script')
 <script>
     $(document).ready(function() {
     $('.select2').select2();
 });
 </script>
-@endpush --}}
+@endpush

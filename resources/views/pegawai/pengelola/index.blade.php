@@ -63,7 +63,7 @@
                                             <td>
                                                 @switch($data->status)
                                                     @case(1)
-                                                        Belum Dianalisa
+                                                        Baru
                                                         @break
                                                     @case(2)
                                                         Ringan

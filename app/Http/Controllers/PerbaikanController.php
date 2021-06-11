@@ -16,7 +16,7 @@ class PerbaikanController extends Controller
      */
     public function index()
     {
-        $perbaikan = Perbaikan::query()->get();
+        $perbaikan = Perbaikan::where('status', 0)->get();
         return view('pegawai.perbaikan.index', compact('perbaikan'));
     }
 
@@ -48,7 +48,7 @@ class PerbaikanController extends Controller
         $perbaikan->users()->sync(request('users'));
 
         notify()->success("Data Berhasil Ditambah", "Success", "topRight");
-        return view('pegawai.perbaikan.index', compact('perbaikan'));
+        return redirect()->route('perbaikan.index');
     }
 
     /**
@@ -70,7 +70,8 @@ class PerbaikanController extends Controller
      */
     public function edit(Perbaikan $perbaikan)
     {
-        //
+        $users = User::where('role_id', 3)->get();
+        return view('pegawai.perbaikan.edit', compact('perbaikan', 'users'));
     }
 
     /**
@@ -82,7 +83,16 @@ class PerbaikanController extends Controller
      */
     public function update(Request $request, Perbaikan $perbaikan)
     {
-        //
+        request()->validate([
+            'users' => 'required'
+        ]);
+
+        $perbaikan->update();
+
+        $perbaikan->users()->sync(request('users'));
+
+        notify()->success("Data Berhasil Diedit", "Success", "topRight");
+        return redirect()->route('perbaikan.index');
     }
 
     /**

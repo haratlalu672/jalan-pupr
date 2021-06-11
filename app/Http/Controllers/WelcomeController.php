@@ -15,7 +15,7 @@ class WelcomeController extends Controller
      */
     public function __invoke()
     {
-        $jalan = Jalan::query()->get();
+        $jalan = Jalan::where('selesai',0)->get();
         return view('welcome', compact('jalan'));
     }
 }

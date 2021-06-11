@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $jalan = Jalan::query()->get();
+        $jalan = Jalan::where('selesai',0)->get();
         return view('pegawai.admin.home', compact('jalan'));
     }
 }

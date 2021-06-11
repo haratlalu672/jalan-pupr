@@ -29,31 +29,20 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Tambah Jalan</h4>
+                                <h4 class="card-title">Edit</h4>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="{{ route('perbaikan.store') }}" method="POST">
+                                    <form action="{{ route('pemeliharaan.update', $perbaikan->id) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @method('patch')
                                         @csrf
-                                        <div class="form-group">
-                                            <label for="jalan">Jalan</label>
-                                            <select type="text" name="jalan" id="jalan" class="form-control">
-                                                @foreach ($jalan as $data)
-                                                <option value="{{ $data->id }}">
-                                                    {{ 'JL-' . str_pad($data->id, 6, '0', STR_PAD_LEFT) }} -
-                                                    {{ $data->judul }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('consoles')
-                                            <div class="mt-2 text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        @include('pegawai.perbaikan._partial')
+                                        @include('pegawai.pemeliharaan._partial')
                                         <br>
-                                        <button type="submit" class="btn btn-primary ml-2">Save </button>
+                                        <button type="submit" class="btn btn-primary ml-2">Save</button>
                                     </form>
                                 </div>
                             </div>
@@ -63,7 +52,6 @@
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
-
             </div>
             <!--/. container-fluid -->
         </div>

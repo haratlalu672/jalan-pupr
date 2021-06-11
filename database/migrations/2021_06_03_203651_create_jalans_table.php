@@ -22,7 +22,7 @@ class CreateJalansTable extends Migration
             $table->string('kedalaman');
             $table->string('gambar');
             $table->string('status')->comment('1 = baru, 2 = ringan, 3 = berat');
-            $table->string('selesai')->nullable();
+            $table->boolean('selesai')->nullable()->default(0);
             $table->string('latitude');
             $table->string('longitude');
             $table->timestamps();

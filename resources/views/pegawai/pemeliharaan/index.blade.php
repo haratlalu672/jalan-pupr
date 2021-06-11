@@ -53,17 +53,17 @@
                                         @php
                                         $no =1;
                                         @endphp
-                                        @foreach ($perbaikan as $data)
+                                        @foreach ($pemeliharaan as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ 'PB-' . str_pad($data->id, 6, '0', STR_PAD_LEFT) }}</td>
                                             <td>{{ $data->users()->get()->implode('name',', ') }}</td>
                                             <td>{{ $data->jalan->lokasi }}</td>
                                             <td>
-                                                {{-- <a href="{{ route('perbaikan.show', $data->id) }}"
-                                                class="btn btn-info">Detail</a> --}}
-                                                <a href="{{ route('perbaikan.edit', $data->id) }}"
-                                                    class="btn btn-warning">Edit</a>
+                                                <a href="{{ route('pemeliharaan.show', $data->jalan->id) }}"
+                                                    class="btn btn-info">Detail</a>
+                                                <a href="{{ route('pemeliharaan.edit', $data->id) }}"
+                                                    class="btn btn-warning">Konfirmasi</a>
                                             </td>
                                         </tr>
                                         @endforeach

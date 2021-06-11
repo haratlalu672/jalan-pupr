@@ -79,6 +79,16 @@
                 </ul>
             </li> --}}
             @endif
+            @if (auth()->user()->role_id == 3)
+            <li class="nav-item">
+                <a href="{{ route('pemeliharaan.index') }}" class="nav-link {{ request()->is('pemeliharaan*') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Pemeliharaan Jalan
+                    </p>
+                </a>
+            </li>
+            @endif
             @if (auth()->user()->role_id == 4)
             <li class="nav-item">
                 <a href="{{ route('data.index') }}" class="nav-link {{ request()->is('data*') ? 'active' : '' }}">
