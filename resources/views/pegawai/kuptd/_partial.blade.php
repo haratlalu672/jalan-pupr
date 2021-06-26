@@ -6,7 +6,7 @@
 </div>
 <div class="form-group">
     <label for="username">Username</label>
-    <input type="longtext" class="form-control" id="username" name="username" placeholder="Alamat"
+    <input type="longtext" class="form-control" id="username" name="username" placeholder="Username"
         value="{{ old('username') ?? $user->username }}">
     <span class="text-danger">{{ $errors->first('username') }}</span>
 </div>

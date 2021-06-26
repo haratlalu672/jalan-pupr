@@ -30,10 +30,6 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Data Jalan</h4>
-                                <a href="{{ route('data.create') }}" class="btn btn-primary btn-round ml-auto">
-                                    <i class="fa fa-plus"></i>
-                                    Tambah
-                                </a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -62,14 +58,14 @@
                                             <td>{{ $data->judul }}</td>
                                             <td>
                                                 @switch($data->status)
-                                                    @case(1)
-                                                        Baru
-                                                        @break
-                                                    @case(2)
-                                                        Ringan
-                                                        @break
-                                                    @default
-                                                        Berat
+                                                @case(1)
+                                                Baru
+                                                @break
+                                                @case(2)
+                                                Ringan
+                                                @break
+                                                @default
+                                                Berat
                                                 @endswitch
                                             </td>
                                             <td>{{ $data->lokasi }}</td>
@@ -82,6 +78,8 @@
                                                     class="btn btn-info">Detail</a>
                                                 <a href="{{ route('pengelolaan.edit', $data->slug) }}"
                                                     class="btn btn-warning">Status</a>
+                                                <a href="{{ route('cetakJalanDetail', $data->slug) }}"
+                                                    class="btn btn-success">Cetak</a>
                                             </td>
                                         </tr>
                                         @endforeach

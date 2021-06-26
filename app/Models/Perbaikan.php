@@ -20,6 +20,6 @@ class Perbaikan extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withPivot('perbaikan_id');
     }
 }

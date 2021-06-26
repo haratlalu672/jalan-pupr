@@ -64,6 +64,8 @@
                                                 class="btn btn-info">Detail</a> --}}
                                                 <a href="{{ route('perbaikan.edit', $data->id) }}"
                                                     class="btn btn-warning">Edit</a>
+                                                    <a href="{{ route('cetakSuratTugas', $data->id) }}"
+                                                        class="btn btn-success">Cetak</a>
                                             </td>
                                         </tr>
                                         @endforeach

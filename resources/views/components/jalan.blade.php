@@ -25,7 +25,7 @@
 
     @foreach ($jalan as $m)
 	var marker = L.marker([{{  $m->latitude }}, {{  $m->longitude  }}]).addTo(mymap)
-	marker.bindPopup('<img style="width: 200px; height: 150px;" src="{{ asset("storage/" . $m->gambar) }}"> <br><br><strong>Keterangan : <br>{{  $m->judul  }}</strong><br>Kode Laporan : {{  "JL-" . str_pad($m->id, 6, "0", STR_PAD_LEFT)  }}<br>Alamat : {{  $m->lokasi  }}');
+	marker.bindPopup('<img style="width: 200px; height: 150px;" src="{{ asset("storage/" . $m->gambar) }}"> <br><br><strong>Keterangan : <br>{{  $m->judul  }}</strong><br>Kode Laporan : {{  "JL-" . str_pad($m->id, 6, "0", STR_PAD_LEFT)  }}<br>Alamat : {{  $m->lokasi  }}<br>Tanggal : {{ Carbon\Carbon::parse($m->created_at)->translatedFormat('d F Y') }}');
 	@endforeach
 	let overlays = {
 		'Baru' : baru,

@@ -29,15 +29,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Data Jalan</h4>
-                                <a href="{{ route('user.create') }}" class="btn btn-primary btn-round ml-auto">
-                                    <i class="fa fa-plus"></i>
-                                    Tambah
-                                </a>
-                                <a href="{{ route('cetakPegawai') }}" class="btn btn-success btn-round ml-1">
+                                <h4 class="card-title">Data Transaksi</h4>
+                                <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal"
+                                    data-target="#filterModal">
                                     <i class="fa fa-print"></i>
                                     Cetak
-                                </a>
+                                </button>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -47,10 +44,11 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Username</th>
-                                            <th>Role</th>
-                                            <th>Foto</th>
+                                            <th>Kode Jalan</th>
+                                            <th>Alamat</th>
+                                            <th>Laporan</th>
+                                            <th>Dokumentasi</th>
+                                            <th>Tanggal</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -58,30 +56,21 @@
                                         @php
                                         $no =1;
                                         @endphp
-                                        @foreach ($user as $data)
+                                        @foreach ($history as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $data->name }}</td>
-                                            <td>{{ $data->username }}</td>
-                                            <td>{{ $data->role->name }}</td>
+                                            <td>{{ 'JL-' . str_pad($data->jalan->id, 6, '0', STR_PAD_LEFT) }}</td>
+                                            <td> {{ $data->jalan->lokasi }} </td>
+                                            <td>{{ $data->laporan }}</td>
                                             <td>
                                                 <img style="width: 80px; height: 100px;"
-                                                    src="{{ asset("storage/" . $data->profil) }}">
+                                                    src="{{ asset("storage/" . $data->dokumentasi) }}">
+                                            </td>
+                                            <td>{{ Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('cetakPegawaiDetail', $data->id) }}"
+                                                <a href="{{ route('cetakSelesaiDetail', $data->id) }}"
                                                     class="btn btn-success">Cetak</a>
-                                                <a href="{{ route('user.edit', $data->id) }}"
-                                                    class="btn btn-warning">Edit</a>
-                                                <form class="d-inline mr-5"
-                                                    action="{{ route('user.destroy', $data->id) }}" method="POST">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button type="submit" data-toggle="tooltip" class="btn btn-danger"
-                                                        onclick="return confirm('Yakin mau dihapus?')">
-                                                        Hapus
-                                                    </button>
-                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -95,10 +84,46 @@
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
+
             </div>
             <!--/. container-fluid -->
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Filter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('cetakSelesai') }}" method="post">
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2"><label for="date">Tanggal</label></div>
+                            <div class="col-md-5">
+                                <input type="date" class="form-control" id="date1" name="date1">
+                                <span class="text-danger">{{ $errors->first('date1') }}</span>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="date" class="form-control" id="date2" name="date2"
+                                    value="{{ date('Y-m-d') }}">
+                                <span class="text-danger">{{ $errors->first('date2') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection

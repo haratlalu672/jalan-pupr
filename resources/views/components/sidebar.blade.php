@@ -31,6 +31,23 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-header">Laporan</li>
+            <li class="nav-item">
+                <a href="{{ route('dataJalan') }}" class="nav-link {{ request()->is('data-jalan*') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Laporan Data Jalan
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('arsip.index') }}" class="nav-link {{ request()->is('arsip*') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Laporan Selesai Perbaikan
+                    </p>
+                </a>
+            </li>
             @endif
             @if (auth()->user()->role_id == 2)
             <li class="nav-item">
@@ -62,65 +79,66 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{ route('pengelolaan.index') }}"
-                            class="nav-link {{ request()->is('pengelolaan*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Data Jalan
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./index2.html" class="nav-link active">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Dashboard v2</p>
-                        </a>
-                    </li>
+            class="nav-link {{ request()->is('pengelolaan*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Data Jalan
+            </p>
+            </a>
+            </li>
+            <li class="nav-item">
+                <a href="./index2.html" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v2</p>
+                </a>
+            </li>
 
-                </ul>
-            </li> --}}
-            @endif
-            @if (auth()->user()->role_id == 3)
-            <li class="nav-item">
-                <a href="{{ route('pemeliharaan.index') }}" class="nav-link {{ request()->is('pemeliharaan*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                        Pemeliharaan Jalan
-                    </p>
-                </a>
-            </li>
-            @endif
-            @if (auth()->user()->role_id == 4)
-            <li class="nav-item">
-                <a href="{{ route('data.index') }}" class="nav-link {{ request()->is('data*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                        Data Jalan
-                    </p>
-                </a>
-            </li>
-            @endif
-            <li class="nav-header">Akun</li>
-            <li class="nav-item">
-                <a href="{{ route('edit', auth()->user()->id) }}"
-                    class="nav-link {{ request()->is('user/'.auth()->user()->id.'/reset-password') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                        Password
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+        </ul>
+        </li> --}}
+        @endif
+        @if (auth()->user()->role_id == 3)
+        <li class="nav-item">
+            <a href="{{ route('pemeliharaan.index') }}"
+                class="nav-link {{ request()->is('pemeliharaan*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Pemeliharaan Jalan
+                </p>
+            </a>
+        </li>
+        @endif
+        @if (auth()->user()->role_id == 4)
+        <li class="nav-item">
+            <a href="{{ route('data.index') }}" class="nav-link {{ request()->is('data*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Data Jalan
+                </p>
+            </a>
+        </li>
+        @endif
+        <li class="nav-header">Akun</li>
+        <li class="nav-item">
+            <a href="{{ route('edit', auth()->user()->id) }}"
+                class="nav-link {{ request()->is('user/'.auth()->user()->id.'/reset-password') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Password
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                        Logout
-                    </p>
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </li>
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Logout
+                </p>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </li>
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

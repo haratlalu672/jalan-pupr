@@ -56,6 +56,6 @@ class User extends Authenticatable
 
     public function perbaikan()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withPivot('user_id');;
     }
 }

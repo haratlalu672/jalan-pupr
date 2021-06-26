@@ -23,4 +23,9 @@ class Jalan extends Model
     {
         return $this->belongsTo(Perbaikan::class);
     }
+
+    public function histories()
+    {
+        return $this->hasMany(History::class);
+    }
 }

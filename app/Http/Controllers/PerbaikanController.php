@@ -29,7 +29,7 @@ class PerbaikanController extends Controller
     {
         return view('pegawai.perbaikan.create', [
             'perbaikan' => new Perbaikan,
-            'jalan' => Jalan::where('status', '>', 1)->orderBy('status', 'DESC')->get(),
+            'jalan' => Jalan::where('status', '>', 1)->where('selesai', 0)->orderBy('status', 'DESC')->get(),
             'users' => User::where('role_id', 3)->get()
         ]);
     }

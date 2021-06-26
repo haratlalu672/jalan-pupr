@@ -11,7 +11,8 @@ class PemeliharaanController extends Controller
 {
     public function index()
     {
-        $pemeliharaan = Perbaikan::where('status', 0)->get();
+        $pemeliharaan = Perbaikan::with('users')->where('status', 0)->get();
+        // dd($pemeliharaan->first()->users());
         return view('pegawai.pemeliharaan.index', compact('pemeliharaan'));
     }
 
@@ -23,7 +24,7 @@ class PemeliharaanController extends Controller
 
     public function edit($id)
     {
-        $perbaikan = Perbaikan::find($id)->first();
+        $perbaikan = Perbaikan::where('id', $id)->first();
         return view('pegawai.pemeliharaan.edit', compact('perbaikan'));
     }
 
@@ -36,6 +37,7 @@ class PemeliharaanController extends Controller
 
         $perbaikan = Perbaikan::where('id', $id)->first();
         $jalan = Perbaikan::where('id', $perbaikan->jalan_id)->first();
+        $jalan2 = Jalan::where('id', $perbaikan->jalan_id)->first();
         $perbaikan->update([
             'status' => 1
         ]);
@@ -43,7 +45,10 @@ class PemeliharaanController extends Controller
         $jalan->update([
             'status' => 1
         ]);
-        
+        $jalan2->update([
+            'selesai' => 1
+        ]);
+
         $image = $request->dokumentasi ? $request->file('dokumentasi')->store('', 'public') :
             'noimage.png';
         History::create([

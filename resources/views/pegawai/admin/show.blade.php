@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Data jalan</h4>
+                                <h4 class="card-title">Data Jalan</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -55,11 +55,27 @@
                                             <td>Kedalaman</td>
                                             <td>: {{ $jalan->kedalaman }} cm</td>
                                         </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>:
+                                                @switch($jalan->status)
+                                                @case(1)
+                                                Baru
+                                                @break
+                                                @case(2)
+                                                Ringan
+                                                @break
+                                                @default
+                                                Berat
+                                                @endswitch
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="{{ asset("storage/". $jalan->gambar) }}" style="width: 100%; height: 300px;">
+                                    <img src="{{ asset("storage/". $jalan->gambar) }}"
+                                        style="width: 100%; height: 300px;">
                                 </div>
                                 <div class="col-md-4">
                                     <div id="mapid" style="width: 100%; height: 300px;"></div>

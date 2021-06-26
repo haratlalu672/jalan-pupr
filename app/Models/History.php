@@ -10,4 +10,10 @@ class History extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function jalan()
+    {
+        return $this->belongsTo(Jalan::class);
+    }
+
 }
