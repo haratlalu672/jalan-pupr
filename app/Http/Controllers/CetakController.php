@@ -109,7 +109,7 @@ class CetakController extends Controller
         $filter = $query->get();
 
 
-        $pdf = \PDF::loadView('cetak.data-jalan', compact('filter', 'date1', 'date2','status','kerusakan'));
+        $pdf = \PDF::loadView('cetak.data-jalan', compact('filter', 'date1', 'date2', 'status', 'kerusakan'));
         $pdf->setPaper('a4', 'landscape');
         $pdf->setOptions([
             'margin-bottom' => 0,

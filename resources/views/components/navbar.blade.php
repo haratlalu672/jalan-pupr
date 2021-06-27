@@ -8,7 +8,7 @@
         </ul>
   
         <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">
+        {{-- <ul class="navbar-nav ml-auto">
           <!-- Notifications Dropdown Menu -->
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -36,6 +36,6 @@
               <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
           </li>
-        </ul>
+        </ul> --}}
       </nav>
       <!-- /.navbar -->

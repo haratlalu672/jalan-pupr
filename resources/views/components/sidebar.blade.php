@@ -16,7 +16,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
                 <a href="{{ route('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Dashboard
                     </p>
@@ -25,7 +25,7 @@
             @if (auth()->user()->role_id == 1)
             <li class="nav-item">
                 <a href="{{ route('user.index') }}" class="nav-link {{ request()->is('user*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-users"></i>
                     <p>
                         Pengguna
                     </p>
@@ -34,7 +34,7 @@
             <li class="nav-header">Laporan</li>
             <li class="nav-item">
                 <a href="{{ route('dataJalan') }}" class="nav-link {{ request()->is('data-jalan*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-copy"></i>
                     <p>
                         Laporan Data Jalan
                     </p>
@@ -42,7 +42,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('arsip.index') }}" class="nav-link {{ request()->is('arsip*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-copy"></i>
                     <p>
                         Laporan Selesai Perbaikan
                     </p>
@@ -53,7 +53,7 @@
             <li class="nav-item">
                 <a href="{{ route('pengelolaan.index') }}"
                     class="nav-link {{ request()->is('pengelolaan*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-tasks"></i>
                     <p>
                         Pengelolaan Jalan
                     </p>
@@ -62,7 +62,7 @@
             <li class="nav-item">
                 <a href="{{ route('perbaikan.index') }}"
                     class="nav-link {{ request()->is('perbaikan*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-tools"></i>
                     <p>
                         Perbaikan Jalan
                     </p>
@@ -100,7 +100,7 @@
         <li class="nav-item">
             <a href="{{ route('pemeliharaan.index') }}"
                 class="nav-link {{ request()->is('pemeliharaan*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-toolbox"></i>
                 <p>
                     Pemeliharaan Jalan
                 </p>
@@ -110,7 +110,7 @@
         @if (auth()->user()->role_id == 4)
         <li class="nav-item">
             <a href="{{ route('data.index') }}" class="nav-link {{ request()->is('data*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-road"></i>
                 <p>
                     Data Jalan
                 </p>
@@ -121,7 +121,7 @@
         <li class="nav-item">
             <a href="{{ route('edit', auth()->user()->id) }}"
                 class="nav-link {{ request()->is('user/'.auth()->user()->id.'/reset-password') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-key"></i>
                 <p>
                     Password
                 </p>
@@ -130,7 +130,7 @@
         <li class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>
                     Logout
                 </p>

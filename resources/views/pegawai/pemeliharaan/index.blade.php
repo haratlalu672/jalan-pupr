@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Dashboard v2</h1>
+                    <h1 class="m-0 text-dark">Pemeliharaan Jalan</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v2</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Pemeliharaan Jalan</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,10 +30,6 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Data Jalan</h4>
-                                <a href="{{ route('perbaikan.create') }}" class="btn btn-primary btn-round ml-auto">
-                                    <i class="fa fa-plus"></i>
-                                    Tambah
-                                </a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -62,8 +58,10 @@
                                             <td>
                                                 <a href="{{ route('pemeliharaan.show', $data->jalan->id) }}"
                                                     class="btn btn-info">Detail</a>
-                                                <a href="{{ route('pemeliharaan.edit', $data->id) }}"
-                                                    class="btn btn-warning">Konfirmasi</a>
+                                                    @if (auth()->user()->id == $data->users()->get()->implode('id',', '))
+                                                    <a href="{{ route('pemeliharaan.edit', $data->id) }}"
+                                                        class="btn btn-warning">Konfirmasi</a>  
+                                                    @endif
                                             </td>
                                         </tr>
                                         @endforeach
